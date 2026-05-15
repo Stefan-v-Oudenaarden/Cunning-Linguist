@@ -116,7 +116,7 @@ namespace Cunning_Linguist
                 var baseScore = WordsElminatedByWord(word.Key);
                 var vowelCount = VowelScore(word.Key);
 
-                _words[word.Key] = baseScore + (vowelCount * (remianingWordsCount / 20));
+                _words[word.Key] = baseScore + (int)Math.Round(baseScore * (vowelCount * 1.5));
             }
         }
 
@@ -141,7 +141,7 @@ namespace Cunning_Linguist
 
         public int VowelScore(string word)
         {
-            return word.Count(c => _vowels.Contains(c));
+            return word.Where(c => _vowels.Contains(c)).Distinct().Count();
         }
 
         public string GetAllSuggestedWords()
